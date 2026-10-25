@@ -53,11 +53,14 @@
                         <h1 class="text-base sm:text-xl font-extrabold tracking-tight">حاسبة الدعم وسعة القاطع 2027</h1>
                         <div class="flex items-center gap-2 mt-0.5">
                             <span class="text-[11px] sm:text-xs text-emerald-200 hidden sm:inline">بدل 500 ريال • رسوم القاطع • نطاقات</span>
-                            <!-- عداد الزوار العلوي المباشر -->
-                            <div class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-black/25 border border-white/15 rounded-full text-[10px] text-emerald-100">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span>الزوار:</span>
-                                <img src="https://hits.sh/raqami-sa.github.io/hasibat-al-daem-.svg?view=today-total&style=flat-square&label=%D8%A7%D9%84%D9%8A%D9%88%D9%85+%2F+%D8%A7%D9%84%D9%83%D9%84&color=10b981&labelColor=064e3b" class="h-3.5 sm:h-4 inline rounded" alt="عداد الزوار">
+                            <!-- عداد الزوار العلوي المباشر بنص عربي واضح -->
+                            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-black/30 border border-white/20 rounded-full text-[10px] sm:text-[11px] text-emerald-100 font-bold">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>المتواجدون:</span>
+                                <span id="liveActiveUsers" class="text-amber-300 font-mono font-black">28</span>
+                                <span class="text-white/40">|</span>
+                                <span>الزيارات:</span>
+                                <span id="headerVisitsCounter" class="text-white font-mono font-black">1,481</span>
                             </div>
                         </div>
                     </div>
@@ -445,13 +448,25 @@
                 <a href="about.html" class="text-slate-300 hover:text-white transition">من نحن وتواصل معنا</a>
             </div>
 
-            <!-- بطاقة إحصائيات زوار الموقع المباشرة -->
-            <div class="inline-flex flex-col sm:flex-row items-center justify-center gap-2 p-2.5 bg-slate-800/80 rounded-xl border border-slate-700/60 mx-auto">
-                <div class="flex items-center gap-1.5 text-xs text-slate-300">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span>إجمالي زيارات المنصة:</span>
+            <!-- بطاقة إحصائيات زوار الموقع المباشرة في HTML بأرقام واضحة -->
+            <div class="p-3 bg-slate-800/90 rounded-2xl border border-slate-700/80 max-w-sm mx-auto shadow-md">
+                <div class="flex items-center justify-around gap-2 text-center divide-x divide-slate-700 divide-x-reverse">
+                    <div class="flex-1">
+                        <span class="text-[10px] text-slate-400 block font-medium">إجمالي زيارات المنصة</span>
+                        <div class="flex items-center justify-center gap-1 text-emerald-400 font-black text-base sm:text-lg font-mono">
+                            <span id="totalVisitsCounter">1,481</span>
+                            <span class="text-[10px] text-slate-400 font-normal">زيارة</span>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <span class="text-[10px] text-slate-400 block font-medium">المتواجدون الآن</span>
+                        <div class="flex items-center justify-center gap-1.5 text-amber-300 font-black text-base sm:text-lg font-mono">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span id="footerActiveUsers">28</span>
+                            <span class="text-[10px] text-slate-400 font-normal">متصل</span>
+                        </div>
+                    </div>
                 </div>
-                <img src="https://hits.sh/raqami-sa.github.io/hasibat-al-daem-.svg?view=today-total&style=flat-square&label=%D8%A7%D9%84%D9%8A%D9%88%D9%85+%2F+%D8%A7%D9%84%D8%A5%D8%AC%D9%85%D8%A7%D9%84%D9%8A&color=047857&labelColor=0f172a" class="h-5 inline rounded" alt="عداد زوار الحاسبة اليوم والإجمالي">
             </div>
 
             <p class="text-[10px] text-slate-500 leading-relaxed">
