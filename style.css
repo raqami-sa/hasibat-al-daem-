@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
 
 :root {
     --primary: #047857;
@@ -7,18 +7,27 @@
     --accent: #d97706;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 body {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #f8fafc;
     color: #1e293b;
     direction: rtl;
     text-align: right;
 }
 
+/* منع تقريب الشاشة التلقائي المزعج في هواتف الآيفون */
+input, select, button {
+    font-size: 16px !important;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(6px);
     }
     to {
         opacity: 1;
@@ -27,25 +36,25 @@ body {
 }
 
 .animate-fade-in {
-    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* بطاقات الإعلانات المجهزة لجوجل أدسنس */
+/* بطاقات الإعلانات المجهزة لقوقل أدسنس */
 .ad-slot-wrapper {
     background: repeating-linear-gradient(
         -45deg,
         #f8fafc,
-        #f8fafc 10px,
-        #f1f5f9 10px,
-        #f1f5f9 20px
+        #f8fafc 8px,
+        #f1f5f9 8px,
+        #f1f5f9 16px
     );
     border: 1px dashed #cbd5e1;
-    min-height: 90px;
+    min-height: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 0.75rem;
+    border-radius: 0.85rem;
     overflow: hidden;
     position: relative;
     transition: all 0.2s ease;
@@ -56,19 +65,10 @@ body {
 }
 
 .ad-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #94a3b8;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.2rem;
     text-transform: uppercase;
-}
-
-/* أزرار وتفاعلات لطيفة */
-.card-hover-shadow {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card-hover-shadow:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    font-weight: 700;
 }
