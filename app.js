@@ -1,6 +1,6 @@
 /**
- * حاسبة الدعم الملكي وحاسبة نطاقات
- * متوافقة مع التوجيهات الملكية الكريمة الصادرة في أكتوبر 2026
+ * حاسبة الدعم الملكي وحاسبة نطاقات وتعرفة الكهرباء وسعة القاطع
+ * متوافقة مع التوجيهات الملكية الكريمة وتحديثات الشركة السعودية للطاقة لشهر أكتوبر 2026
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,11 +22,11 @@ function initTabs() {
 
             tabButtons.forEach(b => {
                 b.classList.remove('active', 'bg-emerald-700', 'text-white', 'shadow-md');
-                b.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                b.classList.add('bg-transparent', 'text-slate-700');
             });
 
             btn.classList.add('active', 'bg-emerald-700', 'text-white', 'shadow-md');
-            btn.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+            btn.classList.remove('bg-transparent', 'text-slate-700');
 
             tabContents.forEach(content => {
                 if (content.id === targetId) {
@@ -65,15 +65,15 @@ function initAllowanceCalculator() {
 
         if (['civil_service', 'military', 'operating_programs', 'retiree', 'deceased_family', 'social_security'].includes(val)) {
             // مستحق لبدل 500 ريال
-            statusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300';
+            statusBadge.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300';
             statusBadge.innerHTML = '<span>✓</span> مشمول بالدعم الشهري';
             statusTitle.textContent = 'أنت مشمول ببدل الدعم الشهري (500 ريال)';
             amountVal.textContent = '500';
             
             let desc = '';
             let listItems = [
-                'يبدأ صرف البدل اعتباراً من 1 يناير 2027م بالتزامن مع تعديل تعريفتي الكهرباء والمياه.',
-                'إجمالي الدعم السنوي المباشر: 6,000 ريال سعودي سنوياً.',
+                'يبدأ صرف البدل اعتباراً من 1 يناير 2027م بالتزامن مع تعديل تعريفتي الكهرباء والمياه ورسوم سعة القاطع.',
+                'إجمالي الدعم السنوي المباشر: 6,000 ريال سعودي سنوياً للمستفيد.',
                 'يُصرف البدل تلقائياً مع الراتب/المعاش الشهري دون الحاجة لتقديم طلب يدوي.'
             ];
 
@@ -92,11 +92,11 @@ function initAllowanceCalculator() {
             }
 
             statusDesc.textContent = desc;
-            detailsList.innerHTML = listItems.map(item => `<li class="flex items-start gap-2 text-gray-700 text-sm"><span class="text-emerald-600 font-bold">•</span><span>${item}</span></li>`).join('');
+            detailsList.innerHTML = listItems.map(item => `<li class="flex items-start gap-1.5 text-slate-700 text-xs sm:text-sm"><span class="text-emerald-600 font-bold">•</span><span>${item}</span></li>`).join('');
 
         } else if (val === 'private_employee') {
             // قطاع خاص
-            statusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-amber-100 text-amber-800 border border-amber-300';
+            statusBadge.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300';
             statusBadge.innerHTML = '<span>ℹ</span> مشمول بمبادرة رفع أجور التوطين في نطاقات';
             statusTitle.textContent = 'مشمول برفع الحد الأدنى للأجور في «نطاقات» إلى 5,000 ثم 6,000 ريال';
             amountVal.textContent = 'غير مباشر';
@@ -110,18 +110,18 @@ function initAllowanceCalculator() {
                 'يمكنك استخدام "حاسبة نطاقات" في التبويب الثاني لمعرفة وضع راتبك الحالي وكيف يؤثر على منشأتك.'
             ];
 
-            detailsList.innerHTML = listItems.map(item => `<li class="flex items-start gap-2 text-gray-700 text-sm"><span class="text-amber-600 font-bold">•</span><span>${item}</span></li>`).join('');
+            detailsList.innerHTML = listItems.map(item => `<li class="flex items-start gap-1.5 text-slate-700 text-xs sm:text-sm"><span class="text-amber-600 font-bold">•</span><span>${item}</span></li>`).join('');
 
         } else {
             // غير مشمول
-            statusBadge.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold bg-gray-100 text-gray-800 border border-gray-300';
+            statusBadge.className = 'inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800 border border-gray-300';
             statusBadge.innerHTML = '<span>✕</span> غير مشمول مباشرة حالياً';
             statusTitle.textContent = 'الفئة المحددة غير مشمولة بالبدل المباشر';
             amountVal.textContent = '0';
             statusDesc.textContent = 'يقتصر البدل المالي المباشر (500 ريال) على موظفي الدولة (مدنيين وعسكريين وبنود تشغيل)، المتقاعدين وأسرهم المستحقة، ومستفيدي الضمان الاجتماعي.';
             detailsList.innerHTML = `
-                <li class="flex items-start gap-2 text-gray-700 text-sm"><span class="text-gray-500 font-bold">•</span><span>إذا كانت أسرتك مسجلة بالضمان الاجتماعي المطور، فيمكن لرب الأسرة الاستفادة من الدعم المقرر للأسر الضمانية.</span></li>
-                <li class="flex items-start gap-2 text-gray-700 text-sm"><span class="text-gray-500 font-bold">•</span><span>يمكنك مراجعة برامج الدعم الحكومية التكميلية كحساب المواطن وبرامج الدعم الموجهة.</span></li>
+                <li class="flex items-start gap-1.5 text-slate-700 text-xs sm:text-sm"><span class="text-slate-500 font-bold">•</span><span>إذا كانت أسرتك مسجلة بالضمان الاجتماعي المطور، فيمكن لرب الأسرة الاستفادة من الدعم المقرر للأسر الضمانية.</span></li>
+                <li class="flex items-start gap-1.5 text-slate-700 text-xs sm:text-sm"><span class="text-slate-500 font-bold">•</span><span>يمكنك مراجعة برامج الدعم الحكومية التكميلية كحساب المواطن وبرامج الدعم الموجهة.</span></li>
             `;
         }
     });
@@ -145,7 +145,7 @@ function initNitaqatCalculator() {
         resultBox.classList.remove('hidden');
         resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        // الوضع الحالي (الحد الأدنى للاحتساب الكامل 4000، وأقل من 4000 إلى 3000 بنصف عامل)
+        // الوضع الحالي
         let currentRatio = 0;
         let currentText = '';
         if (salary >= 4000) {
@@ -159,15 +159,13 @@ function initNitaqatCalculator() {
             currentText = 'لا يُحتسب في نسب التوطين (أقل من 3,000 ريال)';
         }
 
-        // المرحلة الأولى (الحد الأدنى للاحتساب الكامل 5000 ريال)
-        let p1Ratio = 0;
+        // المرحلة الأولى (5000 ريال)
         let p1Diff = 0;
         let p1Class = '';
         let p1Desc = '';
 
         if (salary >= 5000) {
-            p1Ratio = 1.0;
-            p1Class = 'text-emerald-700 bg-emerald-50 border-emerald-200';
+            p1Class = 'text-emerald-800 bg-emerald-50 border-emerald-200';
             p1Desc = 'مستوفٍ للاحتساب الكامل (1.0). منشأتك لن تحتاج لتعديل راتبك للاستفادة الكاملة من توطينك.';
         } else {
             p1Diff = 5000 - salary;
@@ -175,15 +173,13 @@ function initNitaqatCalculator() {
             p1Desc = `راتبك الحالي أقل من 5,000 ريال. لتحقيق الاحتساب الكامل (1.0)، تحتاج المنشأة لرفع راتبك بمقدار ${p1Diff.toLocaleString('ar-SA')} ريال شهرياً.`;
         }
 
-        // المرحلة الثانية (الحد الأدنى للاحتساب الكامل 6000 ريال)
-        let p2Ratio = 0;
+        // المرحلة الثانية (6000 ريال)
         let p2Diff = 0;
         let p2Class = '';
         let p2Desc = '';
 
         if (salary >= 6000) {
-            p2Ratio = 1.0;
-            p2Class = 'text-emerald-700 bg-emerald-50 border-emerald-200';
+            p2Class = 'text-emerald-800 bg-emerald-50 border-emerald-200';
             p2Desc = 'مستوفٍ للاحتساب الكامل (1.0) حتى بعد تطبيق المرحلة الثانية.';
         } else {
             p2Diff = 6000 - salary;
@@ -192,17 +188,17 @@ function initNitaqatCalculator() {
         }
 
         document.getElementById('currentNitaqatVal').textContent = currentText;
-        document.getElementById('phase1Card').className = `p-4 rounded-xl border ${p1Class}`;
+        document.getElementById('phase1Card').className = `p-3.5 rounded-xl border ${p1Class}`;
         document.getElementById('phase1Desc').textContent = p1Desc;
-        document.getElementById('phase2Card').className = `p-4 rounded-xl border ${p2Class}`;
+        document.getElementById('phase2Card').className = `p-3.5 rounded-xl border ${p2Class}`;
         document.getElementById('phase2Desc').textContent = p2Desc;
     });
 }
 
-// 3. حاسبة الأثر التقديري لتعرفة الكهرباء والمياه
+// 3. حاسبة الأثر التقديري لتعرفة الكهرباء والمياه وسعة القاطع (بناءً على التحديثات الرسمية 2027)
 function initUtilityCalculator() {
-    const housingType = document.getElementById('housingType');
-    const familyMembers = document.getElementById('familyMembers');
+    const tariffSector = document.getElementById('tariffSector');
+    const breakerCapacity = document.getElementById('breakerCapacity');
     const currentElec = document.getElementById('currentElecBill');
     const currentWater = document.getElementById('currentWaterBill');
     const calcBtn = document.getElementById('calcUtilityBtn');
@@ -210,12 +206,20 @@ function initUtilityCalculator() {
 
     if (!calcBtn) return;
 
-    calcBtn.addEventListener('click', () => {
-        const elec = parseFloat(currentElec.value) || 0;
-        const water = parseFloat(currentWater.value) || 0;
-        const members = parseInt(familyMembers.value) || 4;
+    // تحديث خيارات رسوم القاطع عند تغيير القطاع
+    if (tariffSector && breakerCapacity) {
+        tariffSector.addEventListener('change', () => {
+            updateBreakerOptions(tariffSector.value, breakerCapacity);
+        });
+    }
 
-        if (elec <= 0 && water <= 0) {
+    calcBtn.addEventListener('click', () => {
+        const sector = tariffSector ? tariffSector.value : 'residential';
+        const breakerVal = breakerCapacity ? breakerCapacity.value : '20_100';
+        const currentElecVal = parseFloat(currentElec.value) || 0;
+        const currentWaterVal = parseFloat(currentWater.value) || 0;
+
+        if (currentElecVal <= 0 && currentWaterVal <= 0) {
             alert('يرجى إدخال قيمة تقريبية لفاتورة الكهرباء أو المياه الحالية.');
             return;
         }
@@ -223,14 +227,70 @@ function initUtilityCalculator() {
         resultBox.classList.remove('hidden');
         resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-        // تقدير نسبة التغير المحتملة (بين 12% إلى 20% تقريبياً بحسب حجم الاستهلاك وشرائح الاستهلاك الجديدة)
-        const estElecIncrease = Math.round(elec * 0.16);
-        const estWaterIncrease = Math.round(water * 0.18);
-        const totalEstimatedIncrease = estElecIncrease + estWaterIncrease;
+        // تحديد الرسم الثابت الشهري الجديد لسعة القاطع
+        let newBreakerFee = 70; // افتراضي للسكني 20 إلى <100 أمبير
+        let oldBreakerFee = 15; // كان سابقاً رسوم قراءة وصيانة العداد 10 - 15 ريال
+
+        if (sector === 'residential') {
+            if (breakerVal === '20_100') newBreakerFee = 70;
+            else if (breakerVal === '100_200') newBreakerFee = 80;
+            else if (breakerVal === '200_300') newBreakerFee = 90;
+            else if (breakerVal === '300_plus') newBreakerFee = 100;
+        } else {
+            // تجاري وحكومي
+            if (breakerVal === '20_100') newBreakerFee = 350;
+            else if (breakerVal === '100_200') newBreakerFee = 500;
+            else if (breakerVal === '200_300') newBreakerFee = 700;
+            else if (breakerVal === '300_plus') newBreakerFee = 900;
+        }
+
+        // حساب الاستهلاك التقريبي للكهرباء (كيلوواط ساعة) من الفاتورة الحالية
+        // في السكني القديم: 1-6000 ك.و.س = 0.18 ريال، وفوق 6000 = 0.30 ريال مع 15% ضريبة
+        const vatRate = 0.15;
+        const currentElecBeforeVat = Math.max(0, (currentElecVal / (1 + vatRate)) - oldBreakerFee);
+        
+        let estimatedKWh = 0;
+        if (currentElecBeforeVat <= (6000 * 0.18)) {
+            estimatedKWh = currentElecBeforeVat / 0.18;
+        } else {
+            const tier1Cost = 6000 * 0.18;
+            const remainder = currentElecBeforeVat - tier1Cost;
+            estimatedKWh = 6000 + (remainder / 0.30);
+        }
+
+        // حساب تكلفة استهلاك الكهرباء بالتعرفة الجديدة (السكني: 21 هللة حتى 6000، ثم 33 هللة)
+        let newConsumptionCost = 0;
+        if (sector === 'residential') {
+            if (estimatedKWh <= 6000) {
+                newConsumptionCost = estimatedKWh * 0.21;
+            } else {
+                newConsumptionCost = (6000 * 0.21) + ((estimatedKWh - 6000) * 0.33);
+            }
+        } else {
+            // تجاري: 25 هللة حتى 6000، ثم 35 هللة
+            if (estimatedKWh <= 6000) {
+                newConsumptionCost = estimatedKWh * 0.25;
+            } else {
+                newConsumptionCost = (6000 * 0.25) + ((estimatedKWh - 6000) * 0.35);
+            }
+        }
+
+        // الفاتورة الكهربائية الجديدة الإجمالية مع الضريبة
+        const newElecBeforeVat = newConsumptionCost + newBreakerFee;
+        const newElecTotalWithVat = Math.round(newElecBeforeVat * (1 + vatRate));
+        const elecDiff = Math.max(0, newElecTotalWithVat - currentElecVal);
+
+        // فرق المياه التقديري (15% تقريباً)
+        const estWaterIncrease = Math.round(currentWaterVal * 0.15);
+        const totalEstimatedIncrease = elecDiff + estWaterIncrease;
+
+        // مقارنة مع بدل الـ 500 ريال
         const supportAllowance = 500;
         const netSurplus = supportAllowance - totalEstimatedIncrease;
 
-        document.getElementById('estElecIncreaseVal').textContent = `+${estElecIncrease.toLocaleString('ar-SA')} ريال`;
+        // عرض النتائج في الواجهة
+        document.getElementById('breakerFeeDisplay').textContent = `${newBreakerFee} ريال (+ 15% ضريبة = ${(newBreakerFee * 1.15).toFixed(1)} ريال)`;
+        document.getElementById('estElecIncreaseVal').textContent = `+${elecDiff.toLocaleString('ar-SA')} ريال`;
         document.getElementById('estWaterIncreaseVal').textContent = `+${estWaterIncrease.toLocaleString('ar-SA')} ريال`;
         document.getElementById('totalEstIncreaseVal').textContent = `${totalEstimatedIncrease.toLocaleString('ar-SA')} ريال`;
 
@@ -239,24 +299,43 @@ function initUtilityCalculator() {
         const netDesc = document.getElementById('netSurplusDesc');
 
         if (netSurplus >= 0) {
-            netBox.className = 'p-5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900';
-            netVal.textContent = `فائض إيجابي: +${netSurplus.toLocaleString('ar-SA')} ريال شهرياً`;
-            netDesc.textContent = 'بدل الدعم الشهري (500 ريال) يغطي بالكامل الزيادة التقديرية في فواتيرك ويوفر لك فائضاً نقدياً إضافياً كل شهر!';
+            netBox.className = 'p-3.5 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900';
+            netVal.textContent = `فائض للمواطن: +${netSurplus.toLocaleString('ar-SA')} ريال/شهرياً`;
+            netDesc.textContent = `بدل الـ 500 ريال يغطي بالكامل الزيادة الجديدة في رسوم سعة القاطع (${newBreakerFee} ريال) وفرق الاستهلاك والمياه، ويبقى معك فائض نقدي صافٍ!`;
         } else {
             const deficit = Math.abs(netSurplus);
-            netBox.className = 'p-5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900';
-            netVal.textContent = `تغطية أكثر من 80% من الزيادة (عجز بسيط: ${deficit.toLocaleString('ar-SA')} ريال)`;
-            netDesc.textContent = 'بدل الـ 500 ريال يخفف الجزء الأكبر من الأثر، ونوصي باتباع أساليب ترشيد استهلاك الطاقة والمياه للبقاء دائماً ضمن نطاق الفائض الإيجابي.';
+            netBox.className = 'p-3.5 rounded-xl border bg-amber-50 border-amber-200 text-amber-900';
+            netVal.textContent = `تغطية أكثر من 85% من الزيادة (عجز بسيط: ${deficit.toLocaleString('ar-SA')} ريال)`;
+            netDesc.textContent = `بدل الـ 500 ريال يخفف الغالبية العظمى من الفاتورة. ينصح بمراجعة سعة القاطع والتأكد من مناسبته للاستهلاك الفعلي للتوفير.`;
         }
     });
 }
 
+function updateBreakerOptions(sector, selectElem) {
+    if (sector === 'residential') {
+        selectElem.innerHTML = `
+            <option value="20_100" selected>من 20 إلى أقل من 100 أمبير (شقق وفلل صغيرة: 50A, 60A, 70A) - [70 ريال/شهر]</option>
+            <option value="100_200">من 100 إلى أقل من 200 أمبير (فلل متوسطة) - [80 ريال/شهر]</option>
+            <option value="200_300">من 200 إلى أقل من 300 أمبير (فلل كبيرة وقصور) - [90 ريال/شهر]</option>
+            <option value="300_plus">300 أمبير فأكثر (مبانٍ ضخمة) - [100 ريال/شهر]</option>
+        `;
+    } else {
+        selectElem.innerHTML = `
+            <option value="20_100" selected>من 20 إلى أقل من 100 أمبير (محلات ومكاتب صغيرة) - [350 ريال/شهر]</option>
+            <option value="100_200">من 100 إلى أقل من 200 أمبير (منشآت متوسطة) - [500 ريال/شهر]</option>
+            <option value="200_300">من 200 إلى أقل من 300 أمبير (مجمعات تجارية) - [700 ريال/شهر]</option>
+            <option value="300_plus">300 أمبير فأكثر (منشآت كبرى) - [900 ريال/شهر]</option>
+        `;
+    }
+}
+
 // أزرار المشاركة
 function initShareButtons() {
-    const shareText = encodeURIComponent('احسب الآن استحقاقك لبدل الـ 500 ريال وتأثير رفع أجور التوطين في نطاقات إلى 5,000 ثم 6,000 ريال وفق الأوامر الملكية الكريمة:');
+    const shareText = encodeURIComponent('احسب الآن استحقاقك لبدل الـ 500 ريال وتعرف على رسوم سعة القاطع الجديدة (70 إلى 100 ريال) وحاسبة نطاقات وفق الأوامر الملكية:');
     const shareUrl = encodeURIComponent(window.location.href);
 
     const whatsappBtn = document.getElementById('shareWhatsApp');
+    const whatsappResultBtn = document.getElementById('shareWhatsAppResult');
     const twitterBtn = document.getElementById('shareTwitter');
     const copyBtn = document.getElementById('copyLinkBtn');
 
@@ -264,20 +343,24 @@ function initShareButtons() {
         whatsappBtn.href = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
     }
 
+    if (whatsappResultBtn) {
+        whatsappResultBtn.href = `https://api.whatsapp.com/send?text=${shareText}%20${shareUrl}`;
+    }
+
     if (twitterBtn) {
-        twitterBtn.href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}&hashtags=الأوامر_الملكية,بدل_500_ريال,نطاقات`;
+        twitterBtn.href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}&hashtags=الأوامر_الملكية,بدل_500_ريال,سعة_القاطع,نطاقات`;
     }
 
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(window.location.href).then(() => {
                 const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<span>✓</span> تم نسخ الرابط بنجاح!';
+                copyBtn.innerHTML = '<span>✓ تم النسخ</span>';
                 setTimeout(() => {
                     copyBtn.innerHTML = originalText;
                 }, 2500);
             }).catch(() => {
-                alert('تم تحديد الرابط، يمكنك نسخه من شريط العنوان.');
+                alert('تم تحديد الرابط، يمكنك نسخه من شريط المتصفح.');
             });
         });
     }
